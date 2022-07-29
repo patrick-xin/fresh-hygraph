@@ -3,8 +3,7 @@ import { h } from "preact";
 import { tw } from "@twind";
 
 import { Blog } from "../types/index.ts";
-import Image from "./Image.tsx";
-import { AuthorAvatar } from "./AuthorAvatar.tsx";
+
 import { PublishDate } from "./PublishDate.tsx";
 
 type Props = Pick<
