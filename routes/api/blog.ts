@@ -7,7 +7,7 @@ export const handler: Handlers = {
   async POST(req) {
     const { cursor } = await req.json();
 
-    const data = await client.request(BLOG_QUERY, {
+    const data = await client(BLOG_QUERY, {
       first: PAGE_SIZE,
       after: cursor,
     });

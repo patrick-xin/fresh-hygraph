@@ -1,6 +1,4 @@
-import { gql } from "graphql-request";
-
-export const CORE_BLOG_FIELDS = gql`
+export const CORE_BLOG_FIELDS = `
   fragment BlogParts on Blog {
     id
     title
@@ -46,7 +44,7 @@ export const CORE_BLOG_FIELDS = gql`
   }
 `;
 
-export const BLOG_QUERY = gql`
+export const BLOG_QUERY = `
   ${CORE_BLOG_FIELDS}
   query BlogQuery($first: Int!, $after: String) {
     categories {
@@ -72,7 +70,7 @@ export const BLOG_QUERY = gql`
   }
 `;
 
-export const TODAY_PICK_QUERY = gql`
+export const TODAY_PICK_QUERY = `
   query TodayPickQuery {
     blogs(where: { isTodaysPick: true }) {
       title
@@ -80,7 +78,7 @@ export const TODAY_PICK_QUERY = gql`
   }
 `;
 
-export const ARTICLE_QUERY = gql`
+export const ARTICLE_QUERY = `
   ${CORE_BLOG_FIELDS}
   query ArticleQuery($slug: String!) {
     categories {
@@ -105,7 +103,7 @@ export const ARTICLE_QUERY = gql`
   }
 `;
 
-export const UPDATE_BLOG_VIEWS = gql`
+export const UPDATE_BLOG_VIEWS = `
   mutation UpdateBlogViews($slug: String!, $views: Int!) {
     updateBlog(where: { slug: $slug }, data: { views: $views }) {
       views
@@ -116,7 +114,7 @@ export const UPDATE_BLOG_VIEWS = gql`
   }
 `;
 
-export const BLOG_ON_CATEGORY_QUERY = gql`
+export const BLOG_ON_CATEGORY_QUERY = `
   ${CORE_BLOG_FIELDS}
   query BlogOnCategoryQuery($first: Int!, $after: String, $slug: String!) {
     categories {
@@ -147,7 +145,7 @@ export const BLOG_ON_CATEGORY_QUERY = gql`
   }
 `;
 
-export const BLOG_ON_AUTHOR_QUERY = gql`
+export const BLOG_ON_AUTHOR_QUERY = `
   ${CORE_BLOG_FIELDS}
   query BlogOnAuthorQuery($first: Int!, $after: String, $slug: String!) {
     categories {
@@ -186,7 +184,7 @@ export const BLOG_ON_AUTHOR_QUERY = gql`
   }
 `;
 
-export const HOME_PAGE_QUERY = gql`
+export const HOME_PAGE_QUERY = `
   ${CORE_BLOG_FIELDS}
   query HomepageQuery($first: Int!) {
     categories {
@@ -203,7 +201,7 @@ export const HOME_PAGE_QUERY = gql`
   }
 `;
 
-export const HOME_TRENDING_QUERY = gql`
+export const HOME_TRENDING_QUERY = `
   ${CORE_BLOG_FIELDS}
   query HomepageTrandingQuery($ids: [ID!]!) {
     blogs(orderBy: views_DESC, where: { id_not_in: $ids }) {

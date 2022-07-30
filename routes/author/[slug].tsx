@@ -33,7 +33,7 @@ export const handler: Handlers = {
       categories: Category[];
       blogsConnection: BlogsConnection;
       author: Author;
-    } = await client.request(BLOG_ON_AUTHOR_QUERY, {
+    } = await client(BLOG_ON_AUTHOR_QUERY, {
       first: 5,
       slug,
     });
@@ -82,7 +82,7 @@ export default function ArticlePage({
             <div class={tw`flex justify-center my-4`}>
               <img
                 src={author.avatar.url}
-                class={tw`h-40 w-40 rounded-full`}
+                class={tw`h-40 w-40 rounded-full object-cover`}
                 alt=""
               />
             </div>

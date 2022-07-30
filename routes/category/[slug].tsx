@@ -26,7 +26,7 @@ export const handler: Handlers = {
   async GET(_req, ctx) {
     const { slug } = ctx.params;
     const data: { categories: Category[]; blogsConnection: BlogsConnection } =
-      await client.request(BLOG_ON_CATEGORY_QUERY, {
+      await client(BLOG_ON_CATEGORY_QUERY, {
         first: PAGE_SIZE,
         slug,
       });

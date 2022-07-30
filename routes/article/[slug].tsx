@@ -22,13 +22,15 @@ import type { Blog, Category } from "../../src/types/index.ts";
 export const handler: Handlers = {
   async GET(_req, ctx) {
     const { slug } = ctx.params;
-    const article: { blog: Blog; categories: Category[] } =
-      await client.request(ARTICLE_QUERY, {
+    const article: { blog: Blog; categories: Category[] } = await client(
+      ARTICLE_QUERY,
+      {
         slug,
-      });
+      }
+    );
 
     const oldViews = article.blog.views;
-    await client.request(UPDATE_BLOG_VIEWS, { slug, views: oldViews + 1 });
+    await client(UPDATE_BLOG_VIEWS, { slug, views: oldViews + 1 });
     return ctx.render({
       article: article.blog,
       categories: article.categories,

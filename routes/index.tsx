@@ -28,13 +28,14 @@ type Props = {
 
 export const handler: Handlers = {
   async GET(_req, ctx) {
-    const data: { categories: Category[]; blogs: Blog[] } =
-      await client.request(HOME_PAGE_QUERY, { first: 4 });
-    const ids = data.blogs.map((blog) => blog.id);
-    const trendings: { blogs: Blog[] } = await client.request(
-      HOME_TRENDING_QUERY,
-      { ids }
+    const data: { categories: Category[]; blogs: Blog[] } = await client(
+      HOME_PAGE_QUERY,
+      { first: 4 }
     );
+    const ids = data.blogs.map((blog) => blog.id);
+    const trendings: { blogs: Blog[] } = await client(HOME_TRENDING_QUERY, {
+      ids,
+    });
 
     return ctx.render({
       categories: data.categories,
